@@ -13,6 +13,7 @@ bar_:
     defaults: 
         _controller: FooBundle:Default:bar
 
+##  plusieur route on le meme prefix donc on les met dans un autre dossier et on specifie le chemin avec resource et le prefix en question  ##
 test:
     resource: routing/test.yml
     prefix: /test
