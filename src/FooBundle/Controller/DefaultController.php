@@ -23,4 +23,16 @@ class DefaultController extends Controller
     {
     	return new response('BAR!!!');
     }
+
+##  $test_param correspond a la variable de l'URL dans routing.yml  ##
+    public function testParamAction($test_param)
+    {
+    	return new response("Test Param : " . $test_param);
+    }
+
+
+    public function numberAction($number)
+    {
+    	return new response("Number --> " . $number);
+    }
 }
