@@ -1,0 +1,16 @@
+detail_custom:
+    path:    /
+    defaults: 
+        _controller: CustomerBundle:Default:detail
+    requirements:
+        identifiant: \d+
+
+update_custom:
+    path:    /update
+    defaults:
+        _controller: CustomerBundle:Default:update
+
+delete_custom:
+    path:    /delete
+    defaults:
+        _controller: CustomerBundle:Default:delete

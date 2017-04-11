@@ -1,0 +1,14 @@
+create_custom:
+    path:    /create 
+    defaults:
+        _controller: CustomerBundle:Default:create 
+
+
+
+##  on recharge un fichier yml pour les route a partir de l'identifiant  ##
+identifiant:
+    resource: identifiant.yml
+    prefix:    /{identifiant}
+
+
+
