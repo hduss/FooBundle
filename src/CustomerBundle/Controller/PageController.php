@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+##  importer la librairie pour pouvoir utiliser la nouvelle syntaxe des formulaire > 2.8  ##
+use Symfony\Component\Form\Extension\Core\Type;
+
 class PageController extends Controller
 {
     public function homeAction()
@@ -31,19 +34,19 @@ class PageController extends Controller
         $form = $this->createFormBuilder($data)
         ->add('email')
         ->add('subject')
-        ->add('message', 'textarea')
-        ->add('copy', 'checkbox')
-        ->add('send', 'submit')
+        ->add('message', Type\TextareaType::class)
+        ->add('copy', Type\CheckboxType::class)
+        ->add('send', Type\SubmitType::class)
         ->getForm();
 
         $form->handleRequest($request);
 ##  si le submit est cliqué et si le formulaire est rempli  (if(isset) && if(isset))  ##
-        if ($form->isSubmited() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
 
 ##  sert a faire une redirection pour pas que l'user valide le formulaire 50 fois s'il rafraichi la page   ##
-            return $this->redirectToRoute();
+            return $this->redirectToRoute('customer_contact');
         }
 
         return $this->render('CustomerBundle:Default:contact.html.twig',
