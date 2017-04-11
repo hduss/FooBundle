@@ -16,7 +16,20 @@ class PageController extends Controller
 
     public function contactAction()
     {
-        return $this->render('CustomerBundle:Default:contact.html.twig');   
+
+        $form = $this->createFormBuilder()
+        ->add('email')
+        ->add('subject')
+        ->add('message', 'textarea')
+        ->add('copy', 'checkbox')
+        ->add('send', 'submit')
+        ->getForm();
+
+
+        return $this->render('CustomerBundle:Default:contact.html.twig',
+            [
+            'form' => $form->createView(),
+            ]);   
     }
 
 }
