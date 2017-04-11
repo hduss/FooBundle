@@ -1,0 +1,19 @@
+foo_bar:
+    path:    /foo 
+    defaults: 
+        _controller: FooBundle:Default:testFoo
+
+##  On passe le number_action au dessus de test_param sinon test_param prend le number en parametre  ## 
+number_action:
+    path:    /{number}
+    defaults:
+        _controller: FooBundle:Default:number
+    requirements:
+        number: \d+
+
+
+
+test_param:
+    path:    /{test_param}
+    defaults:
+        _controller: FooBundle:Default:testParam 

@@ -30,9 +30,15 @@ class DefaultController extends Controller
     	return new response("Test Param : " . $test_param);
     }
 
-
+##  $number correspond a la variable de l'URL dans routing.yml  ##
     public function numberAction($number)
     {
     	return new response("Number --> " . $number);
+    }
+
+
+    public function testFooAction()
+    {
+    	return new response ("azrty");
     }
 }
