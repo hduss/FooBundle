@@ -1,3 +1,14 @@
 foo_homepage:
     path:     /
     defaults: { _controller: FooBundle:Default:index }
+
+foo_:
+    path:    /foo
+    defaults:
+        _controller: FooBundle:Default:foo
+
+bar_:
+    path:    /bar
+    defaults: 
+        _controller: FooBundle:Default:bar
+
