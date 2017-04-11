@@ -23,7 +23,7 @@ class DefaultController extends Controller
 
     	return $this->render('CustomerBundle:Default:detail.html.twig',
     	 [
-    	 'identifiant' => $identifiant,
+    	 'id' => $identifiant,
     	 ]);
     }
 
