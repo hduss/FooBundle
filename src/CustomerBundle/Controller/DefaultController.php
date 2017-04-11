@@ -9,7 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CustomerBundle:base.html.twig');
+        return $this->render('CustomerBundle::base.html.twig');
     }
 
     public function createAction()
