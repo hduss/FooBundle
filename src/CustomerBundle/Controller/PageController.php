@@ -54,7 +54,8 @@ class PageController extends Controller
 
                 'placeholder' => 'Choisissez un service',
             ])
-        ->add('attachment', 'file')     
+        ->add('attachment', 'file') 
+##  attachement de type file sert a l'envoi de fichiers  ##    
         ->add('send', Type\SubmitType::class)
         ->getForm();
 
@@ -63,6 +64,17 @@ class PageController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
+
+                        /* Symfony\Component\HttpFoundation\File\UploadedFile */
+            $file = $data['attachment'];
+     
+            // $fileName = $file->getClientOriginalName();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+     
+            $dir = $this->getParameter('kernel.root_dir') . '/../var/data';
+     
+            // Move the file to the directory
+            $file->move($dir, $fileName);
 
 ##  sert a faire une redirection pour pas que l'user valide le formulaire 50 fois s'il rafraichi la page   ##
 
