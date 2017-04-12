@@ -4,19 +4,58 @@ namespace CustomerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use CustomerBundle\Entity\Customer;
+use CustomerBundle\Form\CustomerType;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CustomerBundle::base.html.twig');
+    	$repo = $this->getDoctrine()->getRepository('CustomerBundle:Customer');
+
+    	$customers = $repo->find();
+
+
+
+
+        return $this->render('CustomerBundle::base.html.twig',
+        	[
+        	'customers' => $customers]);
     }
 
-    public function createAction()
+
+## CRÉATION D'ENTITÉ GRACE A UNE FORMULAIRE  ##
+
+	public function createAction(Request $request)
     {
+        $customer = new Customer();
 
-    	return $this->render('CustomerBundle:Default:create.html.twig');
+        $form = $this
+        	->createForm(new CustomerType(), $customer)
+        	->add('submit', 'submit');
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($customer);
+            $em->flush();
+
+            return $this->redirectToRoute('customer_homepage');
+        }
+        
+        return $this->render('CustomerBundle:Default:create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
+
+
+## ----------------------------------------------------------  ##
+
+
+
+
 
     public function detailAction($identifiant)
     {
@@ -44,4 +83,8 @@ class DefaultController extends Controller
     	 'identifiant' => $identifiant,
     	 ]);
     }
+
+
+
+
 }

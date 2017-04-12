@@ -3,10 +3,14 @@ customer_homepage:
     defaults:
         _controller: CustomerBundle:Page:home 
 
+
+
 customer_contact:
     path:    /contact
     defaults: 
         _controller: CustomerBundle:Page:contact
+
+
 customer:
     resource: routing/customer.yml
     prefix:    /customer

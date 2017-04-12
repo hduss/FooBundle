@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function homeAction()
     {
-        return $this->render('CustomerBundle::baseContact.html.twig');
+        return $this->render('CustomerBundle::base.html.twig');
     }
 
 
@@ -30,12 +30,29 @@ class PageController extends Controller
             'send' => null,
         ];
 
-## on met en parametre de la création du formulaire le tableau par default  ##
+##  on met en parametre de la création du formulaire le tableau par default  ##
+##  les add peuvent prendre jusqu'a 3 arguments -6> nom, type et parametres sous forme de tableau associatif  ##
         $form = $this->createFormBuilder($data)
-        ->add('email')
+        ->add('email', 'email', ['label' => 'Adresse email'])
         ->add('subject')
         ->add('message', Type\TextareaType::class)
-        ->add('copy', Type\CheckboxType::class)
+##  required copy sert a desactiver la validation obligatoire d'un champ  ##
+        ->add('copy', Type\CheckboxType::class, ['required' => false])
+        ->add('service', 'choice', [
+                // Attention: Clé/Valeur inversées version < 2.7
+                'choices' => [
+                    'Service commercial'  => 1,
+                    'Service facturation' => 2,
+                    'Service technique'   => 3,
+                ],
+                'choices_as_values' => true, // (Requis < 3.0)
+
+                'expanded'    => false, // False by default, Select => Radio
+
+                'multiple'    => false, // False by default, Radio => Checkboxes
+
+                'placeholder' => 'Choisissez un service',
+            ])       
         ->add('send', Type\SubmitType::class)
         ->getForm();
 
@@ -46,12 +63,14 @@ class PageController extends Controller
             $data = $form->getData();
 
 ##  sert a faire une redirection pour pas que l'user valide le formulaire 50 fois s'il rafraichi la page   ##
-            return $this->redirectToRoute('customer_contact');
+
+            //return $this->redirectToRoute('customer_contact');
         }
 
         return $this->render('CustomerBundle:Default:contact.html.twig',
             [
             'form' => $form->createView(),
+            'data' => $data,
             ]);   
     }
 

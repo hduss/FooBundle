@@ -17,11 +17,13 @@
 
 <body>
 
-<h1> Gestion Client </h1>
+<h1> Base Client </h1>
 
-
-    {% block content %}{% endblock %}
-
+<ul>
+    {% block content %}
+        <li>{{ customers }}</li>
+    {% endblock %}
+</ul>
 
 </body>
 </html>
