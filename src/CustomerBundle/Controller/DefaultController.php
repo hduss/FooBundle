@@ -14,10 +14,9 @@ class DefaultController extends Controller
     {
     	$repo = $this->getDoctrine()->getRepository('CustomerBundle:Customer');
 
-    	$customers = $repo->find();
+    	$customers = $repo->findAll();
 
-
-
+		var_dump("toto");
 
         return $this->render('CustomerBundle::base.html.twig',
         	[

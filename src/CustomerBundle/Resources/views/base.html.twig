@@ -21,9 +21,16 @@
 
 <ul>
     {% block content %}
-        <li>{{ customers }}</li>
-    {% endblock %}
+        
+        {% for customer in customers %}
+
+            <li> {{ customer.FirstName }} </li>
+
+        {% endfor %}
+
 </ul>
+    {% endblock %}
+
 
 </body>
 </html>

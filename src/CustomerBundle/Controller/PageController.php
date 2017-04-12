@@ -13,6 +13,7 @@ class PageController extends Controller
 {
     public function homeAction()
     {
+        var_dump("titi");
         return $this->render('CustomerBundle::base.html.twig');
     }
 
