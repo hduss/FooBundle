@@ -23,4 +23,5 @@ CustomerBundle\Entity\Customer:
             type: decimal
             precision: '7'
             scale: '2'
+
     lifecycleCallbacks: {  }

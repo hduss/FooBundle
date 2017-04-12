@@ -166,7 +166,9 @@ class DefaultController extends Controller
             $em->remove($customer);
             $em->flush();
 
-            $this->redirectToRoute('customer_homepage');
+            return $this->redirectToRoute('customer_homepage');
+
+
         }
 
         return $this->render('CustomerBundle:Default:delete.html.twig', [

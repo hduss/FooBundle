@@ -13,8 +13,11 @@ CustomerBundle\Entity\Address:
             type: string
             length: 255
         postalCode:
-            type: integer
+            type: string
         city:
             type: string
             length: '64'
+    oneToOne: 
+        customer:
+            targetEntity: CustomerBundle\Entity\Customer
     lifecycleCallbacks: {  }

@@ -29,6 +29,11 @@ class Address
      */
     private $city;
 
+    /** 
+    * @var Customer 
+    */
+    private $customer;
+
 
     /**
      * Get id
@@ -108,4 +113,22 @@ class Address
     {
         return $this->city;
     }
+
+
+
+
+
+
+
+
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
 }

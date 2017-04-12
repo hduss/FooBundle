@@ -35,6 +35,8 @@ class Customer
     private $balance;
 
 
+
+
     /**
      * Get id
      *
@@ -136,4 +138,5 @@ class Customer
     {
         return $this->balance;
     }
+
 }
