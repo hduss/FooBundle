@@ -151,7 +151,7 @@ class Customer
     {
         $this->address = $address;
 
-        $adress->setCustomer($this);
+        $address->setCustomer($this);
 
         return $this;
     }

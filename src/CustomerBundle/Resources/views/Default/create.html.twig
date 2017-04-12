@@ -5,7 +5,7 @@
 
     <p>Création client</p>
 
-    {{ form(form) }}
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
     <br/><a href="{{ path('customer_homepage') }}"><button>Home</button></a>
     
