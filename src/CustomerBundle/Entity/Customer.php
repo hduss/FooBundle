@@ -34,7 +34,10 @@ class Customer
      */
     private $balance;
 
-
+    /** 
+    * @var address 
+    */
+    private $address;
 
 
     /**
@@ -137,6 +140,20 @@ class Customer
     public function getBalance()
     {
         return $this->balance;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address)
+    {
+        $this->address = $address;
+
+        $adress->setCustomer($this);
+
+        return $this;
     }
 
 }

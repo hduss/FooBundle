@@ -20,4 +20,5 @@ CustomerBundle\Entity\Address:
     oneToOne: 
         customer:
             targetEntity: CustomerBundle\Entity\Customer
+            inversedBy: address
     lifecycleCallbacks: {  }

@@ -18,7 +18,8 @@ class CustomerType extends AbstractType
 			->add('Firstname')
 			->add('PastName')
 			->add('birthday')
-			->add('balance');
+			->add('balance')
+			-->add('Adresse');
 
 	}
 
