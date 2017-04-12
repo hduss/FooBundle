@@ -1,7 +1,8 @@
 customer_homepage:
     path:     /
     defaults:
-        _controller: CustomerBundle:Default:index 
+        _controller: CustomerBundle:Default:index
+
 
 
 
@@ -9,6 +10,7 @@ customer_contact:
     path:    /contact
     defaults: 
         _controller: CustomerBundle:Page:contact
+
 
 
 customer:

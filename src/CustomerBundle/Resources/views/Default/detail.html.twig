@@ -2,8 +2,29 @@
 
 {% block content %}
 
-<h1>detail</h1>
 
-<p>{{ id }}</p>
+    <h2>Détail client #{{ customer.id }}</h2>
+    <table class="table">
+        <tr>
+            <th>Prénom</th>
+            <td>{{ customer.FirstName }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ customer.PastName }}</td>
+        </tr>
+        <tr>
+            <th>Date de naissance</th>
+            <td>{{ customer.birthday|date('y/m/Y') }}</td>
+        </tr>
+        <tr>
+            <th>En cours</th>
+            <td>{{ customer.balance|number_format(2, ',') }}</td>
+        </tr>
+    </table>
+
+	
+
+
 
 {% endblock %}

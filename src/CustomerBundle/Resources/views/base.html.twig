@@ -19,16 +19,28 @@
 
 <h1> Base Client </h1>
 
-<ul>
+
     {% block content %}
         
         {% for customer in customers %}
 
-            <li> {{ customer.FirstName }} </li>
+        <div>
+        <h2> client n° {{ customer.id }}</h2>
+            <p>-First Name : 
+                <a href="{{ path('detail_custom', {'identifiant': customer.id}) }}">{{customer.FirstName }}</a>
+            </p>
+
+            <p>-Past Name : {{ customer.PastName }} </p>
+
+
+    
+        </div>
+
 
         {% endfor %}
+            
 
-</ul>
+
     {% endblock %}
 
 

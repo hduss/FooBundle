@@ -16,8 +16,6 @@ class DefaultController extends Controller
 
     	$customers = $repo->findAll();
 
-		var_dump("toto");
-
         return $this->render('CustomerBundle::base.html.twig',
         	[
         	'customers' => $customers]);
@@ -59,9 +57,15 @@ class DefaultController extends Controller
     public function detailAction($identifiant)
     {
 
+    	$repo = $this
+    		->getDoctrine()
+    		->getRepository('CustomerBundle:Customer');
+
+    	$customer = $repo->find($identifiant);
+
     	return $this->render('CustomerBundle:Default:detail.html.twig',
     	 [
-    	 'id' => $identifiant,
+    	 'customer' => $customer,
     	 ]);
     }
 
