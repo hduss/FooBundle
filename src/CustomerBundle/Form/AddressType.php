@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 
-class CustomerType extends AbstractType
+class AddressType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{

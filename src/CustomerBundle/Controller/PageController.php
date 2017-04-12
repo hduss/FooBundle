@@ -32,7 +32,7 @@ class PageController extends Controller
         ];
 
 ##  on met en parametre de la création du formulaire le tableau par default  ##
-##  les add peuvent prendre jusqu'a 3 arguments -6> nom, type et parametres sous forme de tableau associatif  ##
+##  les add peuvent prendre jusqu'a 3 arguments --> nom, type et parametres sous forme de tableau associatif  ##
         $form = $this->createFormBuilder($data)
         ->add('email', 'email', ['label' => 'Adresse email'])
         ->add('subject')
@@ -53,7 +53,8 @@ class PageController extends Controller
                 'multiple'    => false, // False by default, Radio => Checkboxes
 
                 'placeholder' => 'Choisissez un service',
-            ])       
+            ])
+        ->add('attachment', 'file')     
         ->add('send', Type\SubmitType::class)
         ->getForm();
 

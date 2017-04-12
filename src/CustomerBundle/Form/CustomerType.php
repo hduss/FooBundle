@@ -19,7 +19,7 @@ class CustomerType extends AbstractType
 			->add('PastName')
 			->add('birthday')
 			->add('balance')
-			-->add('Adresse');
+			->add('address', new AddressType());
 
 	}
 
