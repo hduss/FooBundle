@@ -27,5 +27,6 @@ CustomerBundle\Entity\Customer:
         address:
             targetEntity: CustomerBundle\Entity\Address
             mappedBy: customer
+            cascade: [persist, remove]
 
     lifecycleCallbacks: {  }
