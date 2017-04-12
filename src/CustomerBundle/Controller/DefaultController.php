@@ -63,19 +63,45 @@ class DefaultController extends Controller
 
     	$customer = $repo->find($identifiant);
 
+
+
     	return $this->render('CustomerBundle:Default:detail.html.twig',
     	 [
     	 'customer' => $customer,
     	 ]);
     }
 
-    public function updateAction($identifiant)
+    public function updateAction(Request $request)
     {
 
-    	return $this->render('CustomerBundle:Default:update.html.twig',
-    	 [
-    	 'identifiant' => $identifiant,
-    	 ]);
+    	$identifiant = $request->attributes->get('identifiant');
+
+
+    	$repo = $this
+    		->getDoctrine()
+    		->getRepository('CustomerBundle:Customer');
+
+    	$customer = $repo->find($identifiant);
+
+        $form = $this
+        	->createForm(new CustomerType(), $customer)
+        	->add('submit', 'submit');
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($customer);
+            $em->flush();
+
+            return $this->redirectToRoute('customer_homepage');
+        }
+
+
+
+        return $this->render('CustomerBundle:Default:create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     public function deleteAction($identifiant)
