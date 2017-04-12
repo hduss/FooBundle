@@ -1,8 +1,11 @@
 {% extends "CustomerBundle::base.html.twig" %}
 
 {% block content %}
-<h2>Update du client {{ identifiant }}</h2>
+<h2>Update du client </h2>
 
 {{ form(form) }}
+
+<br/><a href="{{ path('detail_custom', {'identifiant': customer.id}) }}"><button>retour</button></a>
+<a href="{{ path('customer_homepage') }}"><button>Home</button></a>
 
 {% endblock %}

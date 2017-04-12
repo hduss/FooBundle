@@ -32,7 +32,7 @@
 
             <p>-Past Name : {{ customer.PastName }} </p>
 
-            <a id="idClient" href="{{ path('detail_custom', {'identifiant': customer.id}) }}">Details</a>
+            <a id="idClient" href="{{ path('detail_custom', {'identifiant': customer.id}) }}"><button>Details</button></a><br/><br/>
 
 
     
@@ -40,7 +40,9 @@
 
 
         {% endfor %}
-            
+
+
+            <a href="{{ path('create_custom') }}"><button id="create">Ajouter un client</button></a>
 
 
     {% endblock %}
