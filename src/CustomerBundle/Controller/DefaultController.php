@@ -17,6 +17,12 @@ class DefaultController extends Controller
 
     	$customers = $repo->findAll();
 
+
+    	$speaker = $this->get('customer.speaker');
+    	$name = $speaker->sayMyName();
+
+    	echo $name;
+
         return $this->render('CustomerBundle::base.html.twig',
         	[
         	'customers' => $customers]);
