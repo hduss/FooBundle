@@ -84,6 +84,9 @@ class PageController extends Controller
 
 ##  --------------------ENVOI DE MAIL-------------------------------------------------##
 ##  ici pour l'envoi de message on recupere les index de data qui correspondent aux données fourni par l'utilisateur dans le formulaire  ##
+
+            $to = $this->getParameter('recipient');
+
             $message = \Swift_Message::newInstance()
                 ->setSubject($data['subject'])
                 ->setFrom('tdelmas26@gmail.com')
@@ -91,6 +94,9 @@ class PageController extends Controller
                 ->setBody($body, 'text/html');
 
             $sent = $this->get('mailer')->send($message);
+            if (0 < $sent) {
+                $this->addFlash('success', 'Email envoyé !');
+            }
 
 ##  --------------------GESTION DE D'ENVOI DE FICHIERS-------------------------------------------------##                    
             $file = $data['attachment'];
