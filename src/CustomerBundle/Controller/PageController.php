@@ -22,6 +22,10 @@ class PageController extends Controller
     {
 
 
+
+##  --------------------CREATION DU FORMULAIRE-------------------------------------------------##
+
+
 ## on est obligé de creer une variable pour les valeurs par default du formulaire  ##
         $data =[
             'email' => null,
@@ -60,12 +64,35 @@ class PageController extends Controller
         ->getForm();
 
         $form->handleRequest($request);
+
+##------------------------------FIN FORMULAIRE------------------------------------------##
+
+
+
 ##  si le submit est cliqué et si le formulaire est rempli  (if(isset) && if(isset))  ##
         if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
 
-                        /* Symfony\Component\HttpFoundation\File\UploadedFile */
+
+
+            $body = $this->renderView(
+                'CustomerBundle:mail:contact.html.twig',
+                ['data' => $data]
+            );
+
+
+##  --------------------ENVOI DE MAIL-------------------------------------------------##
+##  ici pour l'envoi de message on recupere les index de data qui correspondent aux données fourni par l'utilisateur dans le formulaire  ##
+            $message = \Swift_Message::newInstance()
+                ->setSubject($data['subject'])
+                ->setFrom('tdelmas26@gmail.com')
+                ->setTo($data['email'])
+                ->setBody($body, 'text/html');
+
+            $sent = $this->get('mailer')->send($message);
+
+##  --------------------GESTION DE D'ENVOI DE FICHIERS-------------------------------------------------##                    
             $file = $data['attachment'];
      
             // $fileName = $file->getClientOriginalName();
