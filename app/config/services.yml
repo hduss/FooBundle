@@ -18,6 +18,13 @@ services:
         class: CustomerBundle\Service\Speaker
         arguments: ['@customer.name_registry']
 
+    customer.notifier:
+        class: CustomerBundle\Service\Notifier
+        arguments:
+            - '@twig'
+            - '@mailer'
+            - '%recipient%'
+
 
 
 

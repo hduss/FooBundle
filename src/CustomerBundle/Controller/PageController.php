@@ -75,8 +75,7 @@ class PageController extends Controller
             $data = $form->getData();
 
 
-
-            $body = $this->renderView(
+/*            $body = $this->renderView(
                 'CustomerBundle:mail:contact.html.twig',
                 ['data' => $data]
             );
@@ -86,6 +85,8 @@ class PageController extends Controller
 ##  ici pour l'envoi de message on recupere les index de data qui correspondent aux données fourni par l'utilisateur dans le formulaire  ##
 
             $to = $this->getParameter('recipient');
+// fonctionnement de getParameter
+// ===       $to = $this->container->get('recipient');
 
             $message = \Swift_Message::newInstance()
                 ->setSubject($data['subject'])
@@ -94,9 +95,18 @@ class PageController extends Controller
                 ->setBody($body, 'text/html');
 
             $sent = $this->get('mailer')->send($message);
+            
+            }*/
+
+            $sent = $this
+                ->get('customer.notifier')
+                ->notify($data);
+
+
             if (0 < $sent) {
                 $this->addFlash('success', 'Email envoyé !');
             }
+
 
 ##  --------------------GESTION DE D'ENVOI DE FICHIERS-------------------------------------------------##                    
             $file = $data['attachment'];
@@ -111,7 +121,7 @@ class PageController extends Controller
 
 ##  sert a faire une redirection pour pas que l'user valide le formulaire 50 fois s'il rafraichi la page   ##
 
-            //return $this->redirectToRoute('customer_contact');
+            return $this->redirectToRoute('customer_homepage');
         }
 
         return $this->render('CustomerBundle:Default:contact.html.twig',
